@@ -21,16 +21,16 @@ P2P Controller (p2p_node.py):
 ---
 
 # 🚀 Getting Started
-- **Setup on Metasploitable 2 (Victim)**
-  Since Metasploitable 2 uses an older environment, run the script using Python 2. This node will wait for an incoming connection from the Controller.
-  *Command:*
-  Bash python p2p_victim.py 8082 (e.g., 8082)
+**Setup on Metasploitable 2 (Victim)**
+- Since Metasploitable 2 uses an older environment, run the script using Python 2. This node will wait for an incoming connection from the Controller.
+- *Command:*
+- Bash python p2p_victim.py 8082 (e.g., 8082)
 
-- **Setup on Kali Linux / Lubuntu (Controller)**
-  The controller requires Python 3.8+ and should be started on a listening port to allow other nodes to connect back if needed.
-  *Command:*
-  Bash sudo python3 p2p_node.py 8080 (for Kalilinux)
-  Bash sudo python3 p2p_node.py 8081 (for Lubuntu)
+**Setup on Kali Linux / Lubuntu (Controller)**
+- The controller requires Python 3.8+ and should be started on a listening port to allow other nodes to connect back if needed.
+- *Command:*
+- Bash sudo python3 p2p_node.py 8080 (for Kalilinux)
+- Bash sudo python3 p2p_node.py 8081 (for Lubuntu)
 
 ---
 
@@ -38,21 +38,29 @@ P2P Controller (p2p_node.py):
 Once both nodes are running, you must link them. 
 The Controller (Kali) must initiate the connection to the Victim (Metasploitable).
 Inside the Kali terminal (where p2p_node.py is running), use the following command:
-Bash: connect <victim-ip> <victim-port>
-> connect 192.168.1.15 8082 (exemple of Metasploite ip and port)
+- Bash: connect (victim-ip) (victim-port)
+- connect 192.168.1.15 8082 (exemple of Metasploite ip and port)
+
 Inside Lubuntu terminal, use the following command:
-Bash: connect <Kali-ip> <Kali-port>
+
+- Bash: connect (Kali-ip) (Kali-port)
 
 ---
 
 # 📋 Available Controller Commands
 Once connected, you can manage the victim(s) using the interactive CLI:
 Command-Syntax
+
 List- list
-Execute - exec <all> 
-Status - status <all>
-Upload - send_script <all> 
-Broadcast - send <message>
+
+Execute - exec (all) 
+
+Status - status (all)
+
+Upload - send_script (all)
+
+Broadcast - send (message)
+
 Exit - exit
 
 ---
