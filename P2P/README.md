@@ -67,6 +67,9 @@ Exit - exit
 
 # 🧪 Technical Features
 **Legacy Compatibility:** p2p_victim.py uses the commands module for full compatibility with Python 2.7 environments.
+
 **Threaded Handling:** Every connection is managed in a separate thread, allowing the controller to manage multiple victims simultaneously.
-**Binary Handling:** The controller can push binary data (scripts) to a /tmp/ directory on the remote target and automatically set execution permissions (chmod +x).
+
+**Binary Handling:** The controller can push binary data (scripts) to a /tmp/ directory on the remote target and automatically set execution permissions
+(chmod +x).
 **Robust Parsing:** Improved EXEC parsing to prevent crashes on malformed network packets.
