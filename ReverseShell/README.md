@@ -28,23 +28,24 @@ the link if the server goes offline.
 
 # 🚀 Lab Setup & Usage
 
-**Prerequisites**
+- *Prerequisites*
+
 Operating System: Linux, Windows, or macOS (Python 3.x installed).
 
 Network: Both machines must be able to reach each other over the network.
 
 Libraries: Standard library only (no external pip installations required).
 
-**Execution**
-Start the Listener (Server): Run this on the "Attacker" machine first:
+- *Execution*
+Start the Listener (Server):
+
+Run this on the "Attacker" machine first:
 
 Bash python3 reverse_shell_server.py
 
-Enter the IP address to bind to (e.g., 0.0.0.0 for all interfaces).
+Enter the IP address to bind to (e.g., 0.0.0.0 for all interfaces).The server will wait on port 8000 by default.
 
-The server will wait on port 8000 by default.
-
-**Start the Client (Target)** 
+- *Start the Client (Target)* 
 
 Run this on the "Victim" machine:
 
@@ -52,7 +53,7 @@ Bash python3 reverse_shell_client.py
 
 Enter the Server's IP address and the port (8000).
 
-**Command Execution**
+- *Command Execution*
 Once the prompt [IP address]$ appears on the server, type any system command (e.g., ls, whoami, ipconfig) to see the output from the remote machine.
 Type exit to close the session.
 
