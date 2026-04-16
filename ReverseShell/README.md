@@ -37,11 +37,11 @@ Network: Both machines must be able to reach each other over the network.
 Libraries: Standard library only (no external pip installations required).
 
 - *Execution*
-Start the Listener (Server):
+Start the Listener (Server).
 
 Run this on the "Attacker" machine first:
 
-Bash python3 reverse_shell_server.py
+`bash python3 reverse_shell_server.py`
 
 Enter the IP address to bind to (e.g., 0.0.0.0 for all interfaces).The server will wait on port 8000 by default.
 
@@ -49,7 +49,7 @@ Enter the IP address to bind to (e.g., 0.0.0.0 for all interfaces).The server wi
 
 Run this on the "Victim" machine:
 
-Bash python3 reverse_shell_client.py
+`bash python3 reverse_shell_client.py`
 
 Enter the Server's IP address and the port (8000).
 
