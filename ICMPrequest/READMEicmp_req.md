@@ -39,7 +39,7 @@ Update the SRC_IP, DST_IP, and IFACE constants in the script.
 
 Run the script with root privileges:
 
-`bash sudo python3 ping_spoofed.py`
+`sudo python3 ping_spoofed.py`
 
 Note: In a successful spoofing scenario, you will typically see a timeout in the script. 
 
