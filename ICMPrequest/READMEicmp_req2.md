@@ -33,7 +33,7 @@ This Python script is a specialized network diagnostic tool that performs Deep P
 # 🚀 How to Run
 **Install Scapy:**
 
-`bash pip install scapy`
+`pip install scapy`
 
 **Configure:** 
 
@@ -41,7 +41,7 @@ Update SRC_IP, DST_IP, and IFACE in the script.
 
 **Execute with Root Privileges:**
 
-`bash sudo python3 ping_spoofed_explain.py`
+`sudo python3 ping_spoofed_explain.py`
 
 ---
 
