@@ -38,21 +38,21 @@ If you want to generate a new pair of keys or a new encrypted file, you can use 
 
 - **A. Generate a new RSA Private Key**
 
-`bash openssl genrsa -out pub_priv_pair.key 1024`
+`openssl genrsa -out pub_priv_pair.key 1024`
 
 - **B. Extract the Public Key (to share with others)**
 
-`bash openssl rsa -in pub_priv_pair.key -pubout -out public_key.pem`
+`openssl rsa -in pub_priv_pair.key -pubout -out public_key.pem`
 
 - **C. Create an encrypted file (cipher.bin)**
 
 Create a secret text file:
 
-`bash echo "This is a secret message" > secret.txt`
+`echo "This is a secret message" > secret.txt`
 
 Encrypt it using the Public Key and OAEP padding:
 
-`bash openssl pkeyutl -encrypt -pubin -inkey public_key.pem -in secret.txt -out cipher.bin -pkeyopt rsa_padding_mode:oaep`
+`openssl pkeyutl -encrypt -pubin -inkey public_key.pem -in secret.txt -out cipher.bin -pkeyopt rsa_padding_mode:oaep`
 
 ---
 
@@ -62,7 +62,7 @@ Encrypt it using the Public Key and OAEP padding:
 
 Place server_sender_key.py and pub_priv_pair.key in the same directory and run:
 
-`bash python3 server_sender_key.py`
+`python3 server_sender_key.py`
 
 The server will start listening on port 8082.
 
@@ -70,7 +70,7 @@ The server will start listening on port 8082.
 
 Ensure cipher.bin is in the client's directory and run:
 
-`bash python3 client_sender_key.py <SERVER_IP> 8082`
+`python3 client_sender_key.py <SERVER_IP> 8082`
 
 The client will send the file, and once the process is complete, a new file named plainD.txt will appear in your folder containing the decrypted text.
 
