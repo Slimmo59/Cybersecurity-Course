@@ -38,7 +38,7 @@ No external libraries are required as it uses standard Python modules (`smtplib`
 Open `mail_meta.py` and update the `target_ip` variable with the IP address of your Metasploitable machine.
 
    ```python
-   target_ip = "192.168.23.138"  # Change this to your target IP
+   target_ip = "192.168...."  # Change this to your target IP
    ```
 
 Run the Script:
