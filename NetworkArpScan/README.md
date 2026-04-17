@@ -17,6 +17,7 @@ Unlike standard scanners that rely on ICMP (Ping), which is often blocked by mod
 ---
 
 # 🛠 Features
+
 **CIDR Support:** Scan entire subnets (e.g., 192.168.1.0/24) or specific IP ranges.
 
 **Interface Selection:** Choose the specific network interface (eth0, wlan0, etc.) for the scan.
@@ -42,6 +43,7 @@ Using Scapy for advanced packet manipulation and raw socket communication.
 
 # 🚀 Usage
 **Prerequisites**
+
 Linux OS (Kali Linux, Parrot, or Ubuntu recommended).
 
 Python 3.x and Scapy library.
@@ -49,12 +51,12 @@ Python 3.x and Scapy library.
 Root Privileges (Required for crafting raw Layer 2 frames).
 
 **Installation**
-Bash
-pip install scapy
+
+`pip install scapy`
 
 **Execution**
-Bash
-sudo python3 arp_sweep.py -n 192.168.1.0/24 -i eth0
+
+`sudo python3 arp_sweep.py -n 192.168.1.0/24 -i eth0`
 
 ---
 
