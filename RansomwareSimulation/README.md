@@ -23,22 +23,22 @@ The goal of this lab is to explore:
 ### 1. The Controller (controller.py)
 This script acts as the Attacker's Terminal. It is responsible for:
 
-Generating a unique session key for encryption.
+* Generating a unique session key for encryption.
 
-Establishing a TCP connection to the target machine.
+* Establishing a TCP connection to the target machine.
 
-Providing an interactive menu to trigger encryption or decryption remotely.
+* Providing an interactive menu to trigger encryption or decryption remotely.
 
 ### 2. The Victim Node (victim.py)
 This script represents the Target System. It stays in listening mode and:
 
-Accepts incoming connections from the Controller.
+* Accepts incoming connections from the Controller.
 
-Uses multi-threading to handle commands without interrupting its main loop.
+* Uses multi-threading to handle commands without interrupting its main loop.
 
-Recursively crawls through specified directories to encrypt or decrypt files.
+* Recursively crawls through specified directories to encrypt or decrypt files.
 
-Automatically generates or removes a HACKED.txt note.
+* Automatically generates or removes a HACKED.txt note.
 
 ---
 
@@ -50,13 +50,13 @@ Python 3.x
 
 cryptography library installed on both nodes:
 
-`bash pip install cryptography`
+`pip install cryptography`
 
 - ### Step 1: Start the Victim Node
 
 Run this on the "target" machine (e.g., a Lubuntu VM):
 
-`bash python3 victim.py`
+`python3 victim.py`
 
 The node will start listening on port 8080.
 
@@ -64,7 +64,7 @@ The node will start listening on port 8080.
 
 Run this on the "attacker" machine (e.g., Kali Linux):
 
-`bash python3 controller.py`
+`python3 controller.py`
 
 Enter the IP address of the Victim Node.
 
