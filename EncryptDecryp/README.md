@@ -33,13 +33,13 @@ A lightweight, secure file encryption and decryption utility based on the Fernet
 
 You must have the cryptography library installed:
 
-`bash pip install cryptography`
+`pip install cryptography`
 
 - Generate a Key
 
 First, create your unique encryption key. This will generate a file named key.txt.
 
-`bash python3 gen_key.py`
+`python3 gen_key.py`
 
 **Warning: Never share your key.txt. If you lose this file, you lose access to your encrypted data forever.**
 
@@ -47,7 +47,7 @@ First, create your unique encryption key. This will generate a file named key.tx
 
 Place the files you wish to protect in a folder named targets. Then run:
 
-`bash python3 encrypt.py`
+`python3 encrypt.py`
 
 The script will read key.txt and overwrite all files in the targets directory with encrypted versions.
 
@@ -55,7 +55,7 @@ The script will read key.txt and overwrite all files in the targets directory wi
 
 To restore your files to their original state:
 
-`bash python3 decript.py`
+`python3 decript.py`
 
 The script will use key.txt to verify and decrypt the files. If the key is incorrect or the files are corrupted, the process will fail to prevent data damage.
 
