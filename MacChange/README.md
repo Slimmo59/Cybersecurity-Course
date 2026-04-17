@@ -39,7 +39,7 @@ NEW_MAC   = "00:11:22:33:44:58"    # Your desired MAC
 
 - Run with sudo:
 
-sudo python3 change_mac.py
+`sudo python3 change_mac.py`
 
 ---
 
