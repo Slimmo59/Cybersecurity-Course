@@ -1,82 +1,139 @@
-# Remote Ransomware Simulation Lab (Educational PoC)
-This repository contains a Proof of Concept (PoC) designed to demonstrate the technical mechanics of a remote encryption attack, 
-commonly associated with ransomware. The project is strictly intended for educational purposes, helping students and cybersecurity 
-enthusiasts understand Command & Control (C2) communication and symmetric file encryption.
+# 🔐 Remote Encryption & Incident Response Simulation Lab (Educational PoC)
+
+This repository contains a **Proof of Concept (PoC)** designed to simulate the technical behavior of a remote file encryption scenario in a controlled environment.
+
+The project is intended for educational purposes to help understand **Command & Control (C2) communication**, **symmetric encryption workflows**, and **incident response behaviors** in compromised systems.
 
 ---
 
-# 🎓 Educational Objectives
-The goal of this lab is to explore:
+## 🎓 Educational Objectives
 
-- **Command & Control (C2) Logic:** How an attacker sends remote instructions to a compromised node.
+This lab focuses on understanding:
 
-- **Symmetric Encryption:** Utilizing the Fernet (AES-based) implementation to secure or lock files.
+* **Command & Control (C2) Architecture**
+  How remote systems can receive and execute structured instructions
 
-- **Network Sockets:** Managing persistent connections and multi-threaded request handling in Python.
+* **Symmetric Encryption Systems**
+  Use of Fernet (AES-based encryption) for secure data transformation
 
-- **Post-Exploitation Artifacts:** The creation of "ransom notes" as a triggered event after encryption.
+* **Network Communication**
+  Persistent TCP connections and basic multi-threaded socket handling
 
----
-
-# 🛠️ Project Components
-
-### 1. The Controller (controller.py)
-This script acts as the Attacker's Terminal. It is responsible for:
-
-* Generating a unique session key for encryption.
-
-* Establishing a TCP connection to the target machine.
-
-* Providing an interactive menu to trigger encryption or decryption remotely.
-
-### 2. The Victim Node (victim.py)
-This script represents the Target System. It stays in listening mode and:
-
-* Accepts incoming connections from the Controller.
-
-* Uses multi-threading to handle commands without interrupting its main loop.
-
-* Recursively crawls through specified directories to encrypt or decrypt files.
-
-* Automatically generates or removes a HACKED.txt note.
+* **Security Incident Simulation**
+  Behavioral artifacts such as file modification indicators and warning notes
 
 ---
 
-# 🚀 Lab Setup & Execution
+## 🛠️ Project Components
 
-### *Prerequisites*
+### 🖥️ Controller (`controller.py`)
 
-Python 3.x
+Acts as the central management interface.
 
-cryptography library installed on both nodes:
+Responsibilities:
 
-`pip install cryptography`
-
-- ### Step 1: Start the Victim Node
-
-Run this on the "target" machine (e.g., a Lubuntu VM):
-
-`python3 victim.py`
-
-The node will start listening on port 8080.
-
-- ### Step 2: Connect via Controller
-
-Run this on the "attacker" machine (e.g., Kali Linux):
-
-`python3 controller.py`
-
-Enter the IP address of the Victim Node.
-
-Choose Option 1 to encrypt a directory. You will need to provide the full path on the victim's machine.
-
-Check the victim's folder: all files (except the note) will be encrypted, and HACKED.txt will appear.
-
-Choose Option 2 to decrypt and restore the files.
+* Establishes TCP connection with the target node
+* Generates a session encryption key
+* Provides an interactive CLI for remote operations
+* Sends structured commands to the connected node
 
 ---
 
-# ⚠️ Legal & Ethical Disclaimer
-This project is for academic and ethical hacking purposes ONLY. 
-Unauthorized access to computer systems or the use of this code for malicious intent is illegal. The authors are not responsible for any misuse of this software.
-Always conduct your tests in isolated, authorized lab environments like Metasploitable or dedicated Virtual Machines.
+### 💻 Worker Node (`victim.py`)
+
+Simulated endpoint system in a controlled environment.
+
+Responsibilities:
+
+* Listens for incoming controller connections
+* Handles requests using multi-threaded processing
+* Recursively processes target directories
+* Applies encryption or decryption operations
+* Generates or removes a simulated incident indicator file
+
+---
+
+## 🚀 Lab Setup & Execution
+
+### 📦 Prerequisites
+
+* Python 3.x
+* cryptography library
+
+Install dependency:
+
+```bash id="q9m2xp"
+pip install cryptography
+```
+
+---
+
+### 🧪 Step 1 — Start Worker Node
+
+Run on the target system (e.g., Linux VM):
+
+```bash id="k3n8vz"
+python3 victim.py
+```
+
+The node will start listening on port **8080**.
+
+---
+
+### 🧪 Step 2 — Start Controller
+
+Run on the control system:
+
+```bash id="m7c4ql"
+python3 controller.py
+```
+
+Enter the IP address of the worker node to establish a connection.
+
+---
+
+### ⚙️ Available Operations
+
+* **Encryption Mode**
+  Select a target directory to simulate file encryption on the remote system
+
+* **Decryption Mode**
+  Restore previously modified files using the same session key
+
+---
+
+## 📖 Learning Outcomes
+
+This project demonstrates:
+
+* Fundamentals of C2 communication models
+* Practical implementation of symmetric cryptography (Fernet / AES)
+* Remote task execution over TCP sockets
+* File system traversal and batch processing
+* Basic simulation of security incident workflows
+
+---
+
+## 🧪 Recommended Environment
+
+This project should only be executed in:
+
+* Isolated virtual machines
+* Cybersecurity training labs
+* Controlled test networks (e.g., Metasploitable environments)
+
+---
+
+## ⚠️ Legal & Ethical Disclaimer
+
+This project is intended strictly for **educational and research purposes only**.
+
+* Do not use on systems without explicit authorization
+* Unauthorized execution on real systems is illegal
+* Always operate within controlled lab environments
+
+---
+
+## 📄 License
+
+This project is released under the MIT License.
