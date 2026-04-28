@@ -1,77 +1,150 @@
-# Basic Python Reverse Shell (Listener & Main)
-This repository contains a foundational implementation of a Reverse Shell system. It demonstrates the core principles of network programming,
-remote command execution, and process management using Python's standard libraries.
+# 🔁 Basic Python Remote Command Execution Lab (Client-Server Socket Model)
+
+This project demonstrates a **fundamental client-server architecture** for remote command execution using Python’s standard networking libraries.
+
+It is designed for educational purposes to explore how TCP-based remote communication and process execution work at a low level.
 
 ---
 
-# 🔍 Overview
-This project consists of two main components:
+## 🔍 Overview
 
-- **listener.py (Server/Attacker):** A script that sits in an "listening" state, waiting for a remote connection to manage.
+The system consists of two components:
 
-- **main.py (Client/Target):** A script designed to be executed on a target machine, which initiates a connection back to the
-listener and provides a remote command-line interface.
+### 🖥️ `listener.py` (Server Node)
 
----
-
-# 🛠 Features
-- **TCP Socket Communication:** Uses the socket module to establish reliable, stream-oriented connections.
-
-- **Dynamic Directory Tracking:** The client monitors current path changes using os.getcwd() and sends updates to the server to
-maintain an accurate command prompt.
-
-- **Integrated Shell Execution:** Utilizes subprocess.run to execute system-level commands and capture both standard output (stdout) and error messages (stderr).
-
-- **Internal cd Handling:** Implements a custom handler for the cd command using os.chdir, ensuring that directory changes persist across different commands.
+* Acts as the central control interface
+* Waits for incoming TCP connections
+* Receives and processes remote command outputs
+* Provides an interactive command interface
 
 ---
 
-# 🚀 Lab Setup & Usage
-- *Prerequisites*
+### 💻 `main.py` (Client Node)
 
-Python 3.x installed on both machines.
-
-The machines must be on the same network or have a reachable routing path.
-
-- *Execution Steps*
-
-Configure the Client:
-Open `main.py` and set the SERVER_IP variable to the IP address of your listener machine.
-
-- *Python*
-
-`SERVER_IP = '192.168.1.XX'` 
-
-- *Start the Listener:*
-
-On the attacker machine, run:
-
-`python3 listener.py`
-
-The server will start listening on port 8080.
-
-- *Start the Client:*
-
-On the target machine, run:
-
-`python3 main.py`
-
-- *Interact:*
-
-Once connected, you can type commands directly into the listener. Type exit to safely close the connection on both ends.
+* Runs on the target machine
+* Establishes a connection back to the server
+* Executes received commands locally
+* Sends command output back to the server
 
 ---
 
-# 🧠 Educational Objectives
-This project was developed to explore:
+## 🛠 Features
 
-**Networking Fundamentals:** Understanding the handshake and data exchange in a TCP/IP connection.
+### 🌐 TCP Socket Communication
 
-**Standard I/O Redirection:** Learning how to capture and transmit the output of system processes over a network.
-
-**Protocol Design:** Creating a simple communication flow where the server and client exchange formatted strings to synchronize the working directory.
+Uses Python’s `socket` module to establish a reliable stream-based connection between client and server.
 
 ---
 
-# ⚠️ Disclaimer
-FOR EDUCATIONAL PURPOSES ONLY. This tool is intended for use in controlled, private laboratory environments for cybersecurity research and learning. Unauthorized use of this script on networks you do not own or have explicit permission to test is illegal.
+### 📁 Dynamic Directory Tracking
+
+* Client tracks working directory using `os.getcwd()`
+* Server receives updates to maintain session context
+* Ensures synchronized command-line experience
+
+---
+
+### ⚙️ System Command Execution
+
+* Uses `subprocess.run()` for command execution
+* Captures both:
+
+  * Standard Output (stdout)
+  * Standard Error (stderr)
+
+---
+
+### 📂 Persistent Directory Handling
+
+* Implements custom `cd` logic using `os.chdir()`
+* Maintains state across multiple command executions
+
+---
+
+## 🚀 Lab Setup & Usage
+
+### 📦 Requirements
+
+* Python 3.x
+* Same network or reachable IP connectivity between machines
+
+---
+
+### ▶️ Step 1 — Configure Client
+
+Edit `main.py` and set the server IP:
+
+```python id="k2m8vp"
+SERVER_IP = "192.168.1.XX"
+```
+
+---
+
+### ▶️ Step 2 — Start Server (Listener)
+
+On the control machine:
+
+```bash id="x7c4ql"
+python3 listener.py
+```
+
+The server will start listening on port **8080**.
+
+---
+
+### ▶️ Step 3 — Start Client
+
+On the target machine:
+
+```bash id="m9n3vz"
+python3 main.py
+```
+
+---
+
+### 💻 Interaction
+
+Once connected:
+
+* Commands typed on the server are executed on the client
+* Output is returned in real time
+* Use `exit` to terminate the session safely
+
+---
+
+## 🧠 Learning Objectives
+
+This project demonstrates:
+
+* TCP client-server architecture fundamentals
+* Remote process execution using Python
+* Standard output/error redirection
+* Session state synchronization over network
+* Basic design of remote administration workflows
+
+---
+
+## 🧪 Educational Context
+
+This implementation helps understand:
+
+* How remote command systems are structured
+* How data is transmitted over TCP sockets
+* How operating systems execute external processes
+* How state is preserved across distributed systems
+
+---
+
+## ⚠️ Security Disclaimer
+
+This project is intended strictly for **educational and authorized cybersecurity research**.
+
+* Do not execute on unauthorized systems
+* Use only in isolated lab environments
+* Unauthorized remote execution is illegal
+
+---
+
+## 📄 License
+
+This project is released under the MIT License.
