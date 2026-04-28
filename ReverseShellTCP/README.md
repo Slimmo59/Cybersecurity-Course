@@ -28,7 +28,7 @@ A simple Python-based reverse TCP client that connects to a remote listener, rec
 Before running the script, update the following variables:
 
 ```python
-KALI_IP = "192.168.23.137"
+KALI_IP = "192.168...."
 KALI_PORT = 443
 ```
 
