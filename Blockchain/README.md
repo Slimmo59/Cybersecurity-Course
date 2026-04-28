@@ -1,75 +1,113 @@
-# Decentralized Real Estate Blockchain Simulation
+# 🏠 Decentralized Real Estate Blockchain Simulation
 
-This project implements a peer-to-peer (P2P) decentralized blockchain network designed to manage real estate transactions. It features a distributed ledger, Proof of Work (PoW) mining, and a consensus algorithm to ensure data consistency across multiple nodes.
+This project implements a peer-to-peer (P2P) blockchain network designed to simulate real estate transactions in a decentralized environment.
+
+It includes a distributed ledger, Proof of Work (PoW) mining, and a consensus mechanism to ensure consistency across multiple nodes.
+
+> ⚠️ This project is intended for educational and simulation purposes only.
 
 ---
 
-## 📂 Project Components
+## 📂 Project Structure
 
-* **`blockchain_8000.py`, `blockchain_8001.py`, `blockchain_8003.py`**: These scripts represent individual nodes in the network. Each node runs its own Flask web server, maintains a local copy of the ledger, and communicates with other peers.
-* **`main_blockchain.py`**: The orchestrator script. It automates the simulation by launching node processes, submitting transactions, and triggering the consensus protocol to show how the network synchronizes.
+* `blockchain_8000.py`, `blockchain_8001.py`, `blockchain_8003.py`
+  → Individual blockchain nodes (Flask servers)
+
+* `main_blockchain.py`
+  → Orchestrator script to automate the simulation and demonstrate network behavior
+
+---
 
 ## ⚙️ Core Features
 
-* **Proof of Work (PoW)**: Each block requires a computational "puzzle" to be solved before it can be added to the chain, securing the network against tampering.
-* **Consensus Algorithm**: Implements the "Longest Chain Rule." If nodes have conflicting versions of the ledger, they automatically adopt the longest valid chain available in the network.
-* **Immutable Ledger**: Each block contains the SHA-256 hash of the previous block, creating an unbreakable chain of data.
-* **REST API**: Each node exposes endpoints to interact with the blockchain:
-    * `GET /mine`: Solve the PoW and create a new block.
-    * `POST /transactions/new`: Add property data (ID, Channel, Data, Timestamp) to the next block.
-    * `GET /chain`: Retrieve the full state of the blockchain.
-    * `POST /nodes/register`: Add a new neighbor node to the network.
-    * `GET /nodes/resolve`: Trigger the consensus algorithm to sync with neighbors.
+* **Proof of Work (PoW)**
+  Blocks require solving a computational puzzle before being added to the chain
 
-## 🚀 Getting Started
+* **Consensus Algorithm (Longest Chain Rule)**
+  Nodes automatically resolve conflicts by adopting the longest valid chain
 
-### Prerequisites
-- Python 3.x
-- Flask
-- Requests
+* **Immutable Ledger**
+  Each block contains the SHA-256 hash of the previous block, ensuring integrity
 
-`pip install Flask requests`
-
-### Running the Simulation
-The easiest way to test the system is to run the main orchestrator:
-
-`python3 main_blockchain.py`
-
-This script will automatically:
-
-* Start Node 8000 and Node 8001.
-
-* Submit a transaction to Node 8000.
-
-* Mine the block on Node 8000.
-
-* Register the nodes with each other.
-
-* Demonstrate how Node 8001 updates its chain to match Node 8000 via the Consensus Algorithm.
+* **REST API Interface**
+  Each node exposes endpoints for interaction and testing
 
 ---
 
-# 🛠 Manual Usage
-You can also run nodes manually in separate terminals:
+## 🔌 API Endpoints
 
+* `GET /mine`
+  → Mine a new block
+
+* `POST /transactions/new`
+  → Add a new real estate transaction
+
+* `GET /chain`
+  → Retrieve the full blockchain
+
+* `POST /nodes/register`
+  → Register peer nodes
+
+* `GET /nodes/resolve`
+  → Trigger consensus across the network
+
+---
+
+## 🛠️ Requirements
+
+* Python 3.x
+* Flask
+* Requests
+
+Install dependencies:
+
+```bash id="y7k2vm"
+pip install Flask requests
+```
+
+---
+
+## 🚀 Getting Started
+
+### Run the Full Simulation
+
+```bash id="q4r8ls"
+python3 main_blockchain.py
+```
+
+This will automatically:
+
+* Start multiple nodes (8000, 8001)
+* Submit a transaction
+* Mine a block
+* Register nodes with each other
+* Demonstrate consensus synchronization
+
+---
+
+## 🧪 Manual Execution
+
+Run nodes manually in separate terminals:
+
+```bash id="f8c3xp"
 # Terminal 1
-
-`python3 blockchain_8000.py`
+python3 blockchain_8000.py
 
 # Terminal 2
+python3 blockchain_8001.py
+```
 
-`python3 blockchain_8001.py`
+Then interact using Postman or cURL:
 
-Then use Postman or cURL to send transactions to http://localhost:8000/transactions/new.
+```bash id="r2m9zn"
+http://localhost:8000/transactions/new
+```
 
---- 
+---
 
-# 📝 Transaction Example
-Th
-e nodes are configured to handle real estate data. Example payload:
+## 📝 Example Transaction
 
-
-```JSON
+```json id="p5d1kt"
 {
     "id": "REF-101",
     "canale": "Sales",
@@ -80,11 +118,46 @@ e nodes are configured to handle real estate data. Example payload:
 
 ---
 
-# 🔐 Future Enhancements
-To make this network production-ready, it should be combined with an mTLS (Mutual TLS) layer (using secure_socket_server.py) 
-to ensure that only authorized nodes with valid certificates can participate in the peer-to-peer communication.
+## 📖 How It Works
+
+1. Nodes maintain independent copies of the blockchain
+2. Transactions are submitted via REST API
+3. Mining creates new blocks using Proof of Work
+4. Nodes communicate and share chain data
+5. Consensus resolves conflicts using the longest chain rule
 
 ---
 
-# 📜 License
-Distributed under the MIT License. See LICENSE for more information.
+## 🧪 Learning Objectives
+
+This project helps demonstrate:
+
+* Fundamentals of blockchain architecture
+* Peer-to-peer network communication
+* Consensus mechanisms in distributed systems
+* API-based interaction between nodes
+* Data integrity using cryptographic hashing
+
+---
+
+## 🔐 Future Improvements
+
+* Add authentication between nodes (mTLS)
+* Improve transaction validation logic
+* Implement digital signatures for transactions
+* Add persistence (database instead of in-memory chain)
+* Enhance security against malicious nodes
+
+---
+
+## 🛡️ Security Note
+
+This simulation does not include authentication or encryption by default.
+
+It is intentionally simplified to demonstrate blockchain concepts and should not be considered production-ready.
+
+---
+
+## 📄 License
+
+This project is released under the MIT License.
