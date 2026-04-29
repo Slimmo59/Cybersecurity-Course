@@ -59,9 +59,25 @@ This lab highlights important real-world risks:
 
 ---
 
-## 📸 Screenshots
+## 📸 Lab Screenshots
 
-All screenshots related to APK analysis and rebuilding process are available in the `/screenshots` directory.
+### APK Analysis (APKTool)
+![APK Analysis](screenshots/apk_structure.png)
+
+---
+
+### Smali Code Inspection
+![Smali Code](screenshots/smali_example.png)
+
+---
+
+### Manifest Permissions
+![Manifest](screenshots/manifest_permissions.png)
+
+---
+
+### Rebuild & Signing Process
+![Build](screenshots/apk_build_process.png)
 
 ---
 
