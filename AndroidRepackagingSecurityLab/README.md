@@ -4,6 +4,16 @@ This project explores the process of **Android APK reverse engineering, modifica
 
 The objective is to understand how Android applications can be altered after compilation and to analyze the **security risks associated with application tampering**.
 
+
+![Android](https://img.shields.io/badge/Android-Security-green)
+![Python](https://img.shields.io/badge/Python-Lab-blue)
+![Status](https://img.shields.io/badge/Status-Educational-orange)
+
+---
+
+## 🎯 Objective
+This project demonstrates Android application analysis and security implications of APK modification in a controlled lab environment.
+
 ---
 
 ## 📌 Overview
