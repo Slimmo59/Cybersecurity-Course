@@ -1,142 +1,110 @@
-# 🧪 SYN Scanner – Automated Network Discovery Tool
+# SYN Scan & Network Reconnaissance Analysis Lab
 
-A lightweight network reconnaissance tool built with **Scapy** that performs TCP **SYN (Half-Open) scanning** combined with automatic host discovery via ICMP.
-
-This project is designed for educational purposes to demonstrate port scanning techniques and network response analysis.
-
----
-
-## 🚀 Features
-
-### 🌐 Host Discovery
-
-* Uses ICMP Echo Requests to verify host availability before scanning
-* Reduces unnecessary scanning of inactive targets
+![Recon](https://img.shields.io/badge/Phase-Reconnaissance-red?style=for-the-badge)
+![Network](https://img.shields.io/badge/Network-TCP_Scanning-orange?style=for-the-badge)
+![SOC](https://img.shields.io/badge/SOC-Detection-blue?style=for-the-badge)
+![Python](https://img.shields.io/badge/Tool-Python-yellow?style=for-the-badge)
 
 ---
 
-### 🔍 TCP SYN (Half-Open) Scan
+## 🧠 Overview
 
-* Sends TCP SYN packets without completing the handshake
-* Analyzes responses to identify port states
-* Minimizes footprint on target-side logs
+This project simulates TCP SYN scanning techniques used in network reconnaissance phases of cyber attacks.
 
----
-
-### 📦 Batch Processing
-
-* Scans ports in configurable batches (default: 100 ports)
-* Improves performance and reduces network load
+The objective is to understand how attackers identify open services on target systems and how these behaviors are detected and mitigated from a SOC perspective.
 
 ---
 
-### 🧠 Multi-Pass Analysis
+## ⚔️ What is SYN Scanning
 
-* Performs an initial scan to detect open ports
-* Executes a secondary validation pass for confirmation
+A SYN scan is a network reconnaissance technique that exploits the TCP three-way handshake:
 
----
+1. SYN packet is sent to a target port
+2. If the port is open, a SYN-ACK is returned
+3. If closed, an RST response is received
 
-### 🎨 Structured Output
-
-* Color-coded terminal output (OPEN / CLOSED / FILTERED)
-* Clear visualization of scan results
+This allows attackers to map active services without fully establishing a TCP connection.
 
 ---
 
-## 🛠 Requirements
+## 🧪 Technical Behavior
 
-* Python 3.x
-* Scapy
+This implementation demonstrates:
 
-Install dependency:
-
-```bash id="k8m3vp"
-pip install scapy
-```
-
-> ⚠️ Root privileges are required due to raw socket operations.
+- TCP SYN packet generation
+- Port scanning over a target range
+- Response analysis (SYN-ACK vs RST)
+- Identification of open, closed, and filtered ports
 
 ---
 
-## 💻 Usage
+## 🧠 Why It Matters
 
-Run the scanner with administrative privileges:
+SYN scanning is widely used in:
 
-```bash id="x4n7ql"
-sudo python3 syn_scan.py <TARGET_IP> [options]
-```
+- Network reconnaissance
+- Attack surface mapping
+- Pre-exploitation intelligence gathering
 
----
-
-## ⚙️ Scan Modes
-
-### 🔹 Quick Mode (default)
-
-* Scans ports 1–1024
-
-```bash id="q2m9vz"
-sudo python3 syn_scan.py 192.168.1.10
-```
+Because it does not complete the TCP handshake, it is considered a “stealthier” scanning technique compared to full connection scans.
 
 ---
 
-### 🔹 Common Ports Mode
+## 🛰️ SOC & Detection Perspective
 
-* Scans the most commonly used service ports
+From a defensive standpoint, SYN scanning is a common early-stage attack indicator.
 
-```bash id="m7c3xp"
-sudo python3 syn_scan.py 192.168.1.10 --common
-```
+### 📊 Network Indicators:
+- High volume of SYN packets to multiple ports
+- Unusual sequential or randomized port probing
+- No corresponding completion of TCP sessions
+
+### 🖥 Detection Methods:
+- IDS/IPS signatures (e.g. Suricata, Snort)
+- Rate-based anomaly detection
+- NetFlow traffic pattern analysis
+- Firewall logging of repeated half-open connections
 
 ---
 
-### 🔹 Full Scan Mode
+## 🛡 Mitigation Strategies
 
-* Scans the entire TCP port range (1–65535)
+To reduce exposure to SYN scanning:
 
-```bash id="r8n2ql"
-sudo python3 syn_scan.py 192.168.1.10 --full
+- Enable SYN flood protection mechanisms
+- Use rate limiting on incoming connections
+- Deploy IDS/IPS systems
+- Monitor abnormal port scanning patterns
+- Restrict unnecessary open services
+
+---
+
+## 📁 Project Structure
+
+```text
+SYNscan/
+├── syn_scan.py
+└── README.md
 ```
 
 ---
 
-## 🔍 Scanning Logic
+## 🧠 Key Learning Outcomes
 
-The tool implements a standard **SYN scan (stealth scan)** methodology:
-
-* **SYN Sent** → initiates connection attempt
-* **SYN-ACK Received** → port is OPEN
-* **RST Received** → port is CLOSED
-* **No Response / ICMP Block** → port is FILTERED
-
-If a SYN-ACK is received, the scanner immediately sends a **RST packet** to avoid completing the TCP handshake.
+- TCP handshake exploitation for reconnaissance
+- Difference between full connect vs SYN scanning
+- Network traffic analysis fundamentals
+- SOC detection techniques for early-stage attacks
+- Understanding attacker reconnaissance workflows
 
 ---
 
-## 🧪 Learning Objectives
+## 📌 Disclaimer
 
-This project demonstrates:
-
-* TCP/IP handshake mechanics
-* Stealth scanning techniques (SYN scan behavior)
-* Host discovery using ICMP
-* Packet crafting using Scapy
-* Network service enumeration strategies
-* Firewall behavior analysis (filtered vs closed ports)
+This project is intended for educational and cybersecurity research purposes in controlled environments only.
 
 ---
 
-## 🛡 Security & Ethical Notice
+## 🏷️ Tags
 
-This tool is intended strictly for **educational and authorized testing environments**.
-
-* Do not scan networks without explicit permission
-* Unauthorized scanning may violate laws or policies
-* Use only in isolated lab environments (VMs, test networks)
-
----
-
-## 📄 License
-
-This project is released under the MIT License.
+`SYN Scan` · `Network Reconnaissance` · `TCP/IP` · `SOC Detection` · `IDS/IPS` · `Cybersecurity Lab`
