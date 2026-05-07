@@ -90,12 +90,12 @@ ReverseShell/
 ├── README.md
 ├── classic/
 │   ├── reverse_shell_client.py
-│   ├── reverse_shell_server.py
+│   └── reverse_shell_server.py
 ├── custom/
 │   ├── reverse_shell_client.py
-│   ├── reverse_shell_server.py
-├── tcp/
-    ├── reverse_shell_tcp.py
+│   └── reverse_shell_server.py
+└── tcp/
+    └── reverse_shell_tcp.py
 ```
 
 ---
