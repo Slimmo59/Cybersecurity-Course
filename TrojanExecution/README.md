@@ -1,154 +1,118 @@
-# 🧵 Multi-Threaded Distributed Task Execution System (Educational Simulation)
+# Trojan Execution & Payload Delivery Analysis Lab
 
-This project implements a **multi-threaded client-server architecture** designed to simulate distributed task execution across multiple connected nodes in a controlled environment.
-
-It demonstrates how a central server can distribute scripts or workloads to multiple clients for execution and analysis purposes.
-
----
-
-## 🛠 Components
-
-### 🖥️ `trojan_execution_server.py`
-
-* Multi-threaded TCP server using `socketserver.ThreadingTCPServer`
-* Handles multiple concurrent client connections
-* Distributes a predefined task script (`command.sh`) to connected clients
-* Validates script availability before transmission
+![Initial Access](https://img.shields.io/badge/Phase-Initial_Access-red?style=for-the-badge)
+![Execution](https://img.shields.io/badge/Tactic-Execution-orange?style=for-the-badge)
+![SOC](https://img.shields.io/badge/SOC-Detection-blue?style=for-the-badge)
+![Python](https://img.shields.io/badge/Tool-Python-yellow?style=for-the-badge)
 
 ---
 
-### 💻 `trojan_execution_client.py`
+## 🧠 Overview
 
-* Client-side execution agent
-* Connects to the server and retrieves task payloads
-* Stores received script temporarily
-* Grants execution permissions (`chmod 755`)
-* Executes the script locally and cleans up after execution
+This project simulates a basic Trojan execution workflow in a controlled environment.
+
+The focus is on understanding how malicious payloads are delivered and executed on a target system, and how such behavior can be detected from a SOC perspective.
 
 ---
 
-### 📜 `command.sh`
+## ⚔️ What is a Trojan Execution Flow
 
-* Sample Bash script used for **controlled load testing simulation**
-* Designed to generate multiple HTTP requests to a local test environment
-* Used to observe system behavior under stress conditions
+A trojan typically operates under the following model:
 
----
+1. Initial delivery (user execution or disguised payload)
+2. Establishment of connection with remote system
+3. Execution of attacker-controlled commands or payload
+4. Optional persistence or follow-up actions
 
-## 🚀 How It Works
-
----
-
-### 🖥️ Server Behavior
-
-* Listens on a specified TCP port (default: `8000`)
-* Accepts multiple simultaneous client connections
-* Sends the script content to each connected client
-* Returns error if payload is unavailable
+This represents a common initial access vector in real-world attacks.
 
 ---
 
-### 💻 Client Behavior
+## 🧪 Technical Behavior
 
-* Connects to the server using IP and port
-* Receives script payload over TCP
-* Writes payload to a temporary file
-* Executes script using system shell
-* Removes temporary file after execution
+This simulation demonstrates:
 
----
-
-### 📊 Task Execution Model
-
-This system follows a **distributed execution workflow**:
-
-1. Server defines workload
-2. Clients request and receive task
-3. Clients execute task locally
-4. Temporary artifacts are cleaned up
+- Remote command execution triggered by a client/server model
+- Payload execution on a target system
+- Communication between attacker and victim components
+- Basic command-and-control interaction pattern
 
 ---
 
-## 📋 Usage
+## 🧠 Security Relevance
+
+Trojan execution is commonly used in:
+
+- Initial compromise of systems
+- Delivery of secondary payloads (e.g. ransomware, keyloggers)
+- Establishment of remote control over victim machines
+
+It is often the first step in a larger attack chain.
 
 ---
 
-### 📦 Requirements
+## 🛰️ SOC & Detection Perspective
 
-* Python 3.x
-* Linux/Unix-based system for script execution
-* `curl` installed (for test workload execution)
+From a defensive perspective, Trojan execution can be identified through:
+
+### 📊 Endpoint Indicators:
+- Unexpected process execution
+- Unknown binaries or scripts running without user intent
+- Child processes spawned from non-standard applications
+
+### 🌐 Network Indicators:
+- Outbound connections to unknown IP addresses
+- Communication with non-standard ports
+- Repeated connection attempts to external hosts
+
+### 🔍 Detection Techniques:
+- EDR behavioral analysis
+- Process tree inspection
+- Network anomaly detection
+- SIEM correlation of execution + network events
 
 ---
 
-### ▶️ Step 1 — Start Server
+## 🛡 Mitigation Strategies
 
-```bash id="k7m3vp"
-python3 trojan_execution_server.py
+To reduce Trojan-based compromise risk:
+
+- Application allowlisting
+- User execution restrictions
+- Email and download filtering
+- Endpoint Detection & Response (EDR)
+- Least privilege enforcement
+
+---
+
+## 📁 Project Structure
+
+```text
+TrojanExecution/
+├── trojan_execution_client.py
+├── trojan_execution_server.py
+├── command.sh
+└── README.md
 ```
 
 ---
 
-### ⚙️ Step 2 — Configure Task
+## 🧠 Key Learning Outcomes
 
-Ensure `command.sh` is located in the server directory.
-
-You can modify:
-
-* Target endpoint
-* Request count
-* Execution delay
+- Understanding initial access techniques
+- Basic payload delivery and execution concepts
+- Relationship between trojans and broader malware chains
+- SOC detection strategies for execution-based threats
+- Mapping execution behavior to attack lifecycle
 
 ---
 
-### 💻 Step 3 — Start Client
+## 📌 Disclaimer
 
-```bash id="x4n8ql"
-sudo python3 trojan_execution_client.py <server_ip> 8000
-```
-
-Example:
-
-```bash id="m9c3vz"
-sudo python3 trojan_execution_client.py 127.0.0.1 8000
-```
+This project is for educational and cybersecurity research purposes only and must be used in controlled environments.
 
 ---
 
-## 🧠 Learning Objectives
+## 🏷️ Tags
 
-This project demonstrates:
-
-* Multi-threaded server architectures
-* Distributed task execution models
-* Client-server file transfer over TCP
-* Temporary file handling and cleanup strategies
-* Process execution using Python (`subprocess`)
-* Basic workload simulation in controlled environments
-
----
-
-## 🧪 Educational Context
-
-This system is intended to study:
-
-* How distributed systems handle task delegation
-* How remote execution pipelines are structured
-* How clients process externally provided workloads
-* How system behavior changes under simulated load conditions
-
----
-
-## ⚠️ Security & Ethical Notice
-
-This project is intended strictly for **educational and authorized testing environments**.
-
-* Do not deploy on production systems
-* Do not execute outside isolated lab environments
-* Use only on systems you own or have explicit permission to test
-
----
-
-## 📄 License
-
-This project is released for educational and research purposes under the MIT License.
+`Trojan` · `Initial Access` · `Payload Execution` · `SOC Detection` · `Cybersecurity Lab` · `Command Execution`
