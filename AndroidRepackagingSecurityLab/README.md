@@ -1,112 +1,143 @@
-# 📱 Android Application Repackaging & Security Analysis Lab
+# Android Repackaging Security Lab — APK Tampering & Reverse Engineering Analysis
 
-This project explores the process of **Android APK reverse engineering, modification, and re-signing** within a controlled lab environment.
-
-The objective is to understand how Android applications can be altered after compilation and to analyze the **security risks associated with application tampering**.
-
-
-![Android](https://img.shields.io/badge/Android-Security-green)
-![Python](https://img.shields.io/badge/Python-Lab-blue)
-![Status](https://img.shields.io/badge/Status-Educational-orange)
+![Android](https://img.shields.io/badge/Android-Security_Lab-green?style=for-the-badge&logo=android)
+![Reverse Engineering](https://img.shields.io/badge/Reverse_Engineering-APKTool-blue?style=for-the-badge)
+![Security](https://img.shields.io/badge/Mobile-Security-orange?style=for-the-badge)
+![Static Analysis](https://img.shields.io/badge/Analysis-Static-yellow?style=for-the-badge)
 
 ---
 
-## 🎯 Objective
-This project demonstrates Android application analysis and security implications of APK modification in a controlled lab environment.
+## 🧠 Executive Summary
+
+This project simulates an Android application repackaging attack, demonstrating how APKs can be decompiled, modified, and rebuilt to alter application behavior.
+
+The goal is to analyze:
+- How Android applications can be reverse engineered
+- How attackers modify application logic (repackaging)
+- What security controls fail in such scenarios
+- How these attacks can be detected and mitigated
 
 ---
 
-## 📌 Overview
+## ⚔️ Threat Model
 
-Android applications (APK files) can be decompiled, modified, and rebuilt.
-This lab demonstrates the internal structure of APKs and highlights risks such as:
+Android applications distributed as APK files are vulnerable to tampering when:
 
-* Application repackaging
-* Unauthorized code modification
-* Permission abuse
-* Mobile malware distribution techniques
+- Code is not obfuscated or protected
+- Integrity checks are missing
+- Sensitive logic is stored client-side
+- No signature validation is enforced
 
----
-
-## 🧪 Lab Environment
-
-* Android Studio (Android 12 Emulator)
-* Decompiled APK analysis
-* Smali code inspection
-* Manual modification of application components
-* APK rebuild, alignment, and signing
+This enables attackers to:
+- Modify application behavior
+- Bypass authentication logic
+- Inject malicious code
+- Repackage and redistribute compromised apps
 
 ---
 
-## 🔍 Key Concepts Explored
+## 🧪 Attack Simulation Workflow
 
-* APK structure and lifecycle
-* Smali (Dalvik bytecode) fundamentals
-* Android permission model
-* Application signing and integrity validation
-* Risks of third-party APK installation
+The following steps were performed:
 
----
-
-## 🧠 Educational Objectives
-
-This project was developed to understand:
-
-* How Android applications can be reverse engineered
-* How attackers may modify legitimate apps
-* Why APK signature validation is critical
-* How permission changes affect application behavior
+1. APK decompilation using APKTool
+2. Extraction of application structure and resources
+3. Analysis of `AndroidManifest.xml` permissions
+4. Smali code inspection and logic review
+5. Identification of modifiable components
+6. Rebuild simulation after modification
 
 ---
 
-## 🛡️ Security Perspective
+## 🧾 Evidence
 
-This lab highlights important real-world risks:
+The following artifacts were analyzed:
 
-* Repackaged applications may contain hidden malicious logic
-* Users cannot easily detect modified APKs
-* Installing apps from untrusted sources increases exposure
+- Decompiled APK structure
+- Manifest permission configuration
+- Smali code examples
+- Build and reconstruction process
 
----
+Screenshots included in `/screenshots` demonstrate:
 
-## 📸 Lab Screenshots
-
-### APK Analysis (APKTool)
-![APK Analysis](screenshots/apk_structure.png)
-
----
-
-### Smali Code Inspection
-![Smali Code](screenshots/smali_example.png)
+- APK internal structure
+- Permission mapping
+- Smali code inspection
+- Build pipeline analysis
 
 ---
 
-### Manifest Permissions
-![Manifest](screenshots/manifest_permissions.png)
+## 🔍 Security Analysis
+
+Key findings from the analysis:
+
+- Client-side logic can be modified without detection
+- Permissions alone are insufficient for security
+- No integrity verification prevents repackaging
+- Smali-level access enables full behavioral modification
+
+This demonstrates a common real-world mobile security issue in poorly protected applications.
 
 ---
 
-### Rebuild & Signing Process
-![Build](screenshots/apk_build_process.png)
+## 🛡 Detection & Mitigation
+
+### Detection Strategies:
+- APK signature verification failure detection
+- Integrity check comparison (hash mismatch)
+- Runtime behavior anomaly detection
+- Play Integrity / SafetyNet signals
+
+### Mitigation Techniques:
+- Code obfuscation (ProGuard / R8)
+- Runtime integrity checks
+- Certificate pinning (for networked apps)
+- Anti-tampering mechanisms
+- Server-side validation of critical logic
 
 ---
 
-## 🛡️ Security Analysis
+## 📁 Project Structure
 
-A defensive security analysis is included in `/docs/security_analysis.md`, covering risks, attack surfaces, and mitigation strategies observed during the lab.
+```text
+AndroidRepackagingSecurityLab/
+├── docs/
+│ ├── android_permissions.md
+│ ├── apk_structure.md
+│ ├── repackaging_process.md
+│ ├── security_analysis.md
+│ └── smali_basics.md
+├── screenshots/
+│ ├── apk_build_process.png
+│ ├── apk_structure.png
+│ ├── manifest_permissions.png
+│ └── smali_example.png
+├── notes.md
+└── README.md
+```
 
 ---
 
-## ⚠️ Ethical & Legal Disclaimer
+## 🧠 Key Learning Outcomes
 
-This project is intended strictly for **educational and defensive security research**.
-
-* Do NOT distribute modified APKs
-* Do NOT install altered applications on real user devices
-* Perform tests only in isolated lab environments
+- Android APK internal structure and lifecycle
+- Reverse engineering using APKTool
+- Smali code interpretation
+- Mobile attack surface analysis
+- Repackaging attack methodology
+- Security weaknesses in client-side logic
 
 ---
 
-## 📄 License
+## 📌 Disclaimer
+
+This project is for educational and security research purposes only.  
+It demonstrates analysis techniques in a controlled environment and must not be used for malicious purposes.
+
+---
+
+## 🏷️ Tags
+
+`Android Security` · `Reverse Engineering` · `APK Repackaging` · `Mobile Security` · `Static Analysis` · `Application Tampering`
 
 This project is released under the MIT License.
